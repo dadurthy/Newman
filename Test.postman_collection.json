@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "e4886d82-02ec-43b4-ad6f-d708e0a75c2a",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Req 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = pm.response.json();",
+							"console.log(response)",
+							"console.log(response.page)",
+							"console.log(response.data[0])",
+							"",
+							"pm.test(\"ABC  checking\", function(){",
+							"",
+							"    var response = pm.response.json();",
+							"for(var i=0;i<6;i++) {",
+							"",
+							"console.log(response.data[i].id)",
+							"",
+							"// if(i===0){",
+							"// pm.expect(response.data[i].id).to.eql(7)    ",
+							"// }",
+							"//  if(i===1)",
+							"// {",
+							"//    pm.expect(response.data[i].id).to.eql(8) ",
+							"// }",
+							"",
+							"switch(i)",
+							"{",
+							"    case 0:pm.expect(response.data[i].id).to.eql(7) ",
+							"    break; ",
+							"    case 1:pm.expect(response.data[i].id).to.eql(8) ",
+							"    break;",
+							"}",
+							"}",
+							"})",
+							"",
+							"pm.test('validating dat types', function(){",
+							"    pm.expect(response).to.be.an(\"object\")",
+							"     pm.expect(response.page).to.be.an(\"number\")",
+							"     pm.expect(response.data).to.be.an(\"array\")",
+							"      pm.expect(response.data[0].email).to.be.an(\"String\")",
+							"      pm.expect(response.support.url).to.be.an(\"string\")",
+							"",
+							"})",
+							"",
+							"pm.test(\"Flow Check\", function(){",
+							"    if(pm.response.code === 200) {",
+							"        if(response.page.to.eql(2)){",
+							"",
+							"    postman.setNextRequest(\"Req 4\")",
+							"        }",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Req 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(\"Req 5\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Req 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(null)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Req 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(\"Req 2\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Req 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(\"Req 3\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
